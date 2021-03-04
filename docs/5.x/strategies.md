@@ -254,6 +254,18 @@ use Psr\Http\Server\MiddlewareInterface;
 interface StrategyInterface
 {
     /**
+     * Add response decorator
+     * 
+     * Response decorators allow you to add one, or many callables to a strategy that will be invoked on successful a
+     * route match for every response.
+     *
+     * @param callable $decorator
+     *
+     * @return \League\Route\Strategy\StrategyInterface
+     */
+    public function addResponseDecorator(callable $decorator): StrategyInterface;
+
+    /**
      * Invoke the route callable based on the strategy.
      *
      * @param \League\Route\Route                      $route
@@ -287,7 +299,7 @@ interface StrategyInterface
      *
      * @return \Psr\Http\Server\MiddlewareInterface
      */
-    public function getExceptionHandler(): MiddlewareInterface;
+    public function getThrowableHandler(): MiddlewareInterface;
 }
 ~~~
 
